@@ -1,3 +1,16 @@
+# IntelliJ Files
+.idea/
+*.ipr
+*.iws
+*.iml
+
+# Build outputs
+target/
+_build/
+
+# OS hidden files
+.DS_Store
+
 # Compiled class file
 *.class
 
