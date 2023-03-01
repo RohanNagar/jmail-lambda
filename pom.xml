@@ -14,13 +14,17 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>8</maven.compiler.source>
     <maven.compiler.target>8</maven.compiler.target>
+
+    <!-- Dependency versions -->
+    <jmail.version>1.4.1</jmail.version>
+    <junit.version>5.9.2</junit.version>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>com.sanctionco.jmail</groupId>
       <artifactId>jmail</artifactId>
-      <version>1.4.1</version>
+      <version>${jmail.version}</version>
     </dependency>
     <dependency>
       <groupId>com.amazonaws</groupId>
@@ -57,13 +61,13 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
-      <version>5.8.2</version>
+      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
-      <version>5.8.2</version>
+      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
