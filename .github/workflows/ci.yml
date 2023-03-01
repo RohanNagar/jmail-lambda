@@ -1,30 +1,33 @@
-push:
-  branches: [ master ]
-  tags: '*'
-pull_request:
-  branches: [ master ]
+name: CI
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+on:
+  push:
+    branches: [ master ]
+    tags: '*'
+  pull_request:
+    branches: [ master ]
 
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'adopt'
-          java-version: 8
+  jobs:
+    build:
+      runs-on: ubuntu-latest
 
-      - name: Cache dependencies
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.m2/repository
-            scripts/node_modules
-          key: ${{ runner.os }}-maven-node-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-node-
+      steps:
+        - uses: actions/checkout@v3
+        - name: Set up JDK
+          uses: actions/setup-java@v3
+          with:
+            distribution: 'adopt'
+            java-version: 8
 
-      - name: Build with Maven
-        run: mvn package
+        - name: Cache dependencies
+          uses: actions/cache@v3
+          with:
+            path: |
+              ~/.m2/repository
+              scripts/node_modules
+            key: ${{ runner.os }}-maven-node-${{ hashFiles('**/pom.xml') }}
+            restore-keys: |
+              ${{ runner.os }}-maven-node-
+
+        - name: Build with Maven
+          run: mvn package
