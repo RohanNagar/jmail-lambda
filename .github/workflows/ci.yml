@@ -40,3 +40,14 @@ jobs:
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           function_name: jmail-lambda
           zip_file: target/jmail-lambda-1.0.0-SNAPSHOT.jar
+
+      - name: Wait for update
+        if: github.ref == 'refs/heads/main'
+        run: sleep 5
+
+      - name: Test API
+        if: github.ref == 'refs/heads/main'
+        uses: lakuapik/gh-actions-http-status@v1
+        with:
+          sites: '["https://tnrrvxkpol.execute-api.us-east-1.amazonaws.com/prod/jmail?address=test@test.com", "https://tnrrvxkpol.execute-api.us-east-1.amazonaws.com/prod/jmail?address=error"]'
+          expected: '[200, 400]'
