@@ -40,4 +40,3 @@ jobs:
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           function_name: jmail-lambda
           zip_file: target/jmail-lambda-1.0.0-SNAPSHOT.jar
-          dry_run: true
