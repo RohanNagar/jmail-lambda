@@ -36,7 +36,7 @@ public class Handler implements RequestHandler<APIGatewayProxyRequestEvent, APIG
   private EmailValidator buildValidator(LambdaLogger logger, Map<String, String> options) {
     EmailValidator validator = JMail.validator();
 
-    if (options.get("tld") != null) {
+    if ("true".equals(options.get("tld"))) {
       logger.log("Adding rule requireTopLevelDomain");
       validator = validator.requireTopLevelDomain();
     }
