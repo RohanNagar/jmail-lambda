@@ -41,6 +41,31 @@ public class Handler implements RequestHandler<APIGatewayProxyRequestEvent, APIG
       validator = validator.requireTopLevelDomain();
     }
 
+    if ("true".equals(options.get("rejectIp"))) {
+      logger.log("Adding rule disallowIpDomain");
+      validator = validator.disallowIpDomain();
+    }
+
+    if ("true".equals(options.get("rejectSourceRoutes"))) {
+      logger.log("Adding rule disallowExplicitSourceRouting");
+      validator = validator.disallowExplicitSourceRouting();
+    }
+
+    if ("true".equals(options.get("rejectReserved"))) {
+      logger.log("Adding rule disallowReservedDomains");
+      validator = validator.disallowReservedDomains();
+    }
+
+    if ("true".equals(options.get("rejectQuotedIds"))) {
+      logger.log("Adding rule disallowQuotedIdentifiers");
+      validator = validator.disallowQuotedIdentifiers();
+    }
+
+    if ("true".equals(options.get("mx"))) {
+      logger.log("Adding rule requireValidMXRecord");
+      validator = validator.requireValidMXRecord();
+    }
+
     return validator;
   }
 }
