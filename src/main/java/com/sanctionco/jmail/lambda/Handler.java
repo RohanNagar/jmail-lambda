@@ -5,6 +5,7 @@ import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
+import com.sanctionco.jmail.EmailValidationResult;
 import com.sanctionco.jmail.EmailValidator;
 import com.sanctionco.jmail.JMail;
 
@@ -22,12 +23,15 @@ public class Handler implements RequestHandler<APIGatewayProxyRequestEvent, APIG
 
     EmailValidator validator = buildValidator(logger, event.getQueryStringParameters());
 
-    if (validator.isValid(email)) {
+    EmailValidationResult result = validator.validate(email);
+
+    if (result.isSuccess()) {
       logger.log("Valid email address");
       response.setStatusCode(200);
     } else {
       logger.log("Invalid email address");
       response.setStatusCode(400);
+      response.setBody(result.getFailureReason().toString());
     }
 
     return response;
