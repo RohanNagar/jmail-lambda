@@ -26,6 +26,9 @@ public class Handler implements RequestHandler<APIGatewayProxyRequestEvent, APIG
 
     EmailValidationResult result = validator.validate(email);
 
+    Map<String, String> headers = new HashMap<>();
+    headers.put("Access-Control-Allow-Origin", "*");
+
     if (result.isSuccess()) {
       logger.log("Valid email address");
       response.setStatusCode(200);
@@ -33,7 +36,6 @@ public class Handler implements RequestHandler<APIGatewayProxyRequestEvent, APIG
       logger.log("Invalid email address");
       response.setStatusCode(400);
 
-      Map<String, String> headers = new HashMap<>();
       headers.put("Validation-Failure-Reason", result.getFailureReason().toString());
       headers.put("Access-Control-Expose-Headers", "Validation-Failure-Reason");
 
