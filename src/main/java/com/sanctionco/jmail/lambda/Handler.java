@@ -9,6 +9,7 @@ import com.sanctionco.jmail.EmailValidationResult;
 import com.sanctionco.jmail.EmailValidator;
 import com.sanctionco.jmail.JMail;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Handler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
@@ -31,7 +32,11 @@ public class Handler implements RequestHandler<APIGatewayProxyRequestEvent, APIG
     } else {
       logger.log("Invalid email address");
       response.setStatusCode(400);
-      response.setBody(result.getFailureReason().toString());
+
+      Map<String, String> headers = new HashMap<>();
+      headers.put("Validation-Failure-Reason", result.getFailureReason().toString());
+
+      response.setHeaders(headers);
     }
 
     return response;
