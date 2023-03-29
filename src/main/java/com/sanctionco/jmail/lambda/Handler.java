@@ -38,9 +38,9 @@ public class Handler implements RequestHandler<APIGatewayProxyRequestEvent, APIG
 
       headers.put("Validation-Failure-Reason", result.getFailureReason().toString());
       headers.put("Access-Control-Expose-Headers", "Validation-Failure-Reason");
-
-      response.setHeaders(headers);
     }
+
+    response.setHeaders(headers);
 
     return response;
   }
