@@ -22,7 +22,7 @@
     <jmail.version>1.6.3</jmail.version>
     <json.simple.version>1.1.1</json.simple.version>
     <junit.version>5.11.0</junit.version>
-    <mockito.version>4.11.0</mockito.version>
+    <mockito.version>5.0.0</mockito.version>
 
     <!-- Plugin versions -->
     <maven.complier.plugin.version>3.13.0</maven.complier.plugin.version>
