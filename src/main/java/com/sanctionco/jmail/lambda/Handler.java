@@ -78,6 +78,16 @@ public class Handler implements RequestHandler<APIGatewayProxyRequestEvent, APIG
       validator = validator.requireValidMXRecord();
     }
 
+    if ("true".equals(options.get("ascii"))) {
+      logger.log("Adding rule requireAscii");
+      validator = validator.requireAscii();
+    }
+
+    if ("true".equals(options.get("nonstandardDots"))) {
+      logger.log("Adding rule allowNonstandardDots");
+      validator = validator.allowNonstandardDots();
+    }
+
     return validator;
   }
 }
