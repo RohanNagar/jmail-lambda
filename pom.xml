@@ -21,7 +21,7 @@
     <gson.version>2.13.1</gson.version>
     <jmail.version>2.0.2</jmail.version>
     <json.simple.version>1.1.1</json.simple.version>
-    <junit.version>5.13.3</junit.version>
+    <junit.version>5.13.4</junit.version>
     <mockito.version>5.18.0</mockito.version>
 
     <!-- Plugin versions -->
